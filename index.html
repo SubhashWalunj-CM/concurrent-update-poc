@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en" ng-app="concurrentUpdate" data-framework="firebase">
+
+<head>
+    <meta charset="utf-8">
+    <title>Firebase &amp; AngularJS todo app</title>
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+    <div class='container' ng-controller="EditPatientController">
+        <h1>Concurrent update demo</h1>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="input-group">
+                            <select class="form-control" ng-model="workingUser" ng-change="triggerUserChange();" ng-disabled="!isConcuDataFetched">
+                                <option ng-repeat="(key, user) in users" value="{{key}}">{{user.userName}}</option>
+                            </select>
+                            <div class="input-group-addon">is editing</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-body">
+                <form id="editPatient-53467" name="editPatient-53467">
+                    <div class="alert alert-info" role="alert" ng-show="alertMsg" ng-bind-html="alertMsg"></div>
+                    <div class="form-group">
+                        <label for="firstName">First Name</label>
+                        <input class="form-control" id="firstName" name="firstName" ng-model="patient.firstName" ng-focus="checkConcurrentUpdate('firstName',true);" ng-change="updateConcurrentModel('firstName', patient.firstName);" ng-disabled="!isConcuDataFetched" ng-blur="concurrentUpdateFieldsMsg.firstName['show'] = false;">
+                        <div class="alert alert-info animate-show animate-hide" role="alert" ng-show="concurrentUpdateFieldsMsg.firstName.show" ng-bind-html="concurrentUpdateFieldsMsg.firstName.msg"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last Name</label>
+                        <input class="form-control" id="lastName" name="lastName" ng-model="patient.lastName" ng-focus="checkConcurrentUpdate('lastName',true);" ng-disabled="!isConcuDataFetched" ng-blur="concurrentUpdateFieldsMsg.lastName = '';">
+                        <div class="alert alert-info animate-show animate-hide" role="alert" ng-show="concurrentUpdateFieldsMsg.lastName.show" ng-bind-html="concurrentUpdateFieldsMsg.lastName.msg"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="cellNo">Contact No.</label>
+                        <input class="form-control" id="cellNo" name="cellNo" ng-model="patient.cellNo" ng-focus="checkConcurrentUpdate('cellNo',true);" ng-disabled="!isConcuDataFetched" ng-blur="concurrentUpdateFieldsMsg.cellNo = '';">
+                        <div class="alert alert-info animate-show animate-hide" role="alert" ng-show="concurrentUpdateFieldsMsg.cellNo.show" ng-bind-html="concurrentUpdateFieldsMsg.cellNo.msg"></div>
+                    </div>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="gender" value="Male" ng-model="patient.gender" ng-focus="checkConcurrentUpdate('gender',true);" ng-disabled="!isConcuDataFetched" ng-blur="concurrentUpdateFieldsMsg.gender = '';"> Male
+                        </label>
+                        <label>
+                            <input type="radio" name="gender" value="Female" ng-model="patient.gender" ng-focus="checkConcurrentUpdate('gender',true);" ng-disabled="!isConcuDataFetched" ng-blur="concurrentUpdateFieldsMsg.gender = '';"> Female
+                        </label>
+                        <div class="alert alert-info animate-show animate-hide" role="alert" ng-show="concurrentUpdateFieldsMsg.gender.show" ng-bind-html="concurrentUpdateFieldsMsg.gender.msg"></div>
+                    </div>
+
+                    <button class="btn btn-default" type="reset">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- AngularJS -->
+    <script src="./js/jquery-1.11.2.min.js"></script>
+    <script src="./js/angular-1.5.8/angular.min.js"></script>
+    <script src="./js/angular-1.5.8/angular-sanitize.min.js"></script>
+    <script src="./js/angular-1.5.8/angular-animate.min.js"></script>
+    <script src="./js/ui-bootstrap-tpls-2.3.0.min.js"></script>
+    <!-- Firebase -->
+    <script src="./js/firebase/firebase.min.js"></script>
+    <!-- AngularFire -->
+    <script src="./js/firebase/angularfire.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="./js/bootstrap.min.js"></script>
+    <script src="./app.js"></script>
+</body>
+
+</html>

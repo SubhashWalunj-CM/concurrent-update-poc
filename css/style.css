@@ -1,0 +1,24 @@
+.pointer {
+	cursor: pointer;
+}
+
+.animate-show,
+.animate-hide {
+  -webkit-transition:all linear 500ms;
+  -moz-transition:all linear 500ms;
+  -ms-transition:all linear 500ms;
+  -o-transition:all linear 500ms;
+  transition:all linear 500ms;
+}
+
+.animate-show.ng-hide-remove,
+.animate-hide.ng-hide-add.ng-hide-add-active {
+  opacity: 0;
+  display: block !important;
+}
+
+.animate-hide.ng-hide-add,
+.animate-show.ng-hide-remove.ng-hide-remove-active {
+  opacity: 1;
+  display: block !important;
+}
