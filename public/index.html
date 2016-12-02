@@ -34,20 +34,20 @@
                     </div>
                     <div class="form-group">
                         <label for="lastName">Last Name</label>
-                        <input class="form-control" id="lastName" name="lastName" ng-model="patient.lastName" ng-focus="checkConcurrentUpdate('lastName',true);" ng-disabled="!isConcuDataFetched" ng-blur="concurrentUpdateFieldsMsg.lastName = '';">
+                        <input class="form-control" id="lastName" name="lastName" ng-model="patient.lastName" ng-focus="checkConcurrentUpdate('lastName',true);" ng-change="updateConcurrentModel('lastName', patient.lastName);" ng-disabled="!isConcuDataFetched" ng-blur="concurrentUpdateFieldsMsg.lastName = '';">
                         <div class="alert alert-info animate-show animate-hide" role="alert" ng-show="concurrentUpdateFieldsMsg.lastName.show" ng-bind-html="concurrentUpdateFieldsMsg.lastName.msg"></div>
                     </div>
                     <div class="form-group">
                         <label for="cellNo">Contact No.</label>
-                        <input class="form-control" id="cellNo" name="cellNo" ng-model="patient.cellNo" ng-focus="checkConcurrentUpdate('cellNo',true);" ng-disabled="!isConcuDataFetched" ng-blur="concurrentUpdateFieldsMsg.cellNo = '';">
+                        <input class="form-control" id="cellNo" name="cellNo" ng-model="patient.cellNo" ng-focus="checkConcurrentUpdate('cellNo',true);" ng-change="updateConcurrentModel('cellNo', patient.cellNo);" ng-disabled="!isConcuDataFetched" ng-blur="concurrentUpdateFieldsMsg.cellNo = '';">
                         <div class="alert alert-info animate-show animate-hide" role="alert" ng-show="concurrentUpdateFieldsMsg.cellNo.show" ng-bind-html="concurrentUpdateFieldsMsg.cellNo.msg"></div>
                     </div>
                     <div class="radio">
                         <label>
-                            <input type="radio" name="gender" value="Male" ng-model="patient.gender" ng-focus="checkConcurrentUpdate('gender',true);" ng-disabled="!isConcuDataFetched" ng-blur="concurrentUpdateFieldsMsg.gender = '';"> Male
+                            <input type="radio" name="gender" value="Male" ng-model="patient.gender" ng-focus="checkConcurrentUpdate('gender',true);" ng-change="updateConcurrentModel('gender', patient.gender);" ng-disabled="!isConcuDataFetched" ng-blur="concurrentUpdateFieldsMsg.gender = '';"> Male
                         </label>
                         <label>
-                            <input type="radio" name="gender" value="Female" ng-model="patient.gender" ng-focus="checkConcurrentUpdate('gender',true);" ng-disabled="!isConcuDataFetched" ng-blur="concurrentUpdateFieldsMsg.gender = '';"> Female
+                            <input type="radio" name="gender" value="Female" ng-model="patient.gender" ng-focus="checkConcurrentUpdate('gender',true);" ng-change="updateConcurrentModel('gender', patient.gender);" ng-disabled="!isConcuDataFetched" ng-blur="concurrentUpdateFieldsMsg.gender = '';"> Female
                         </label>
                         <div class="alert alert-info animate-show animate-hide" role="alert" ng-show="concurrentUpdateFieldsMsg.gender.show" ng-bind-html="concurrentUpdateFieldsMsg.gender.msg"></div>
                     </div>

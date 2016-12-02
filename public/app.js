@@ -29,6 +29,8 @@
 
     concurrentUpdate.controller('EditPatientController', function EditPatientController($rootScope, $scope, $firebase, $sanitize, $sce, $timeout, $firebaseObject, concurrentUpdateFactory) {
         const formId = "editPatient-53467";
+        var focusedElementId = "";
+
         $scope.workingUser = "2772";
         $scope.alertMsg = "Loading form status...";
         $scope.concurrentUpdateFieldsMsg = {};
@@ -86,6 +88,12 @@
         }
 
         $scope.triggerUserChange = function () {
+            $scope.patient = {
+                "firstName": "",
+                "lastName": "",
+                "cellNo": "",
+                "gender": ""
+            }
             setConcurrentEditMsg();
             syncConcurrentData();
         }
@@ -96,6 +104,7 @@
                 "msg": "",
                 "show": false
             };
+
             angular.forEach(workingUsers, function (value, key) {
                 $scope.concurrentUpdateFieldsMsg[fieldId].msg += "<strong>" + value.userName + "</strong> saying it - <i>" + value.fieldValue + "</i><br>";
             });
@@ -104,7 +113,14 @@
                 $scope.$apply();
             });
 
-            if (fromView) $scope.concurrentUpdateFieldsMsg[fieldId]['show'] = true;
+            if (fromView) {
+                focusedElementId = fieldId;
+                $scope.concurrentUpdateFieldsMsg[fieldId]['show'] = true;
+            } else {
+                if (focusedElementId && focusedElementId == fieldId) {
+                    $scope.concurrentUpdateFieldsMsg[fieldId]['show'] = true;
+                }
+            }
         }
 
         $scope.updateConcurrentModel = function (fieldId, fieldValue) {
